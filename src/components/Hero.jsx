@@ -21,8 +21,8 @@ const Hero = ({ ySlow, yFast }) => {
 
   const rotateX = mapRange(my, -160, 160, 10, -10);
   const rotateY = mapRange(mx, -160, 160, -10, 10);
-  const glowX = mapRange(mx, -160, 160, -25, 25);
-  const glowY = mapRange(my, -160, 160, -25, 25);
+  const glowX   = mapRange(mx, -160, 160, -25, 25);
+  const glowY   = mapRange(my, -160, 160, -25, 25);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -56,7 +56,7 @@ const Hero = ({ ySlow, yFast }) => {
   return (
     <section
       id="home"
-      className="relative min-h-[100vh] flex items-center pt-24 overflow-hidden"
+      className="relative min-h-[100vh] flex items-start md:items-center pt-16 md:pt-24 overflow-hidden"
     >
       {/* gradient blobs (no framer-motion) */}
       <div
@@ -69,7 +69,7 @@ const Hero = ({ ySlow, yFast }) => {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-10">
-        {/* LEFT: copy (no stagger/variants) */}
+        {/* LEFT: copy */}
         <div>
           <p className="text-xs md:text-sm tracking-widest text-purple-400 mb-3">
             FULL-STACK DEV (1 YEAR)
@@ -107,6 +107,8 @@ const Hero = ({ ySlow, yFast }) => {
                 aria-label="GitHub"
                 className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition transform hover:-translate-y-0.5 active:scale-95"
                 href="https://github.com/kalkiramsaravananoff-code"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Github size={16} />
               </a>
@@ -115,6 +117,8 @@ const Hero = ({ ySlow, yFast }) => {
                 aria-label="LinkedIn"
                 className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition transform hover:-translate-y-0.5 active:scale-95"
                 href="https://www.linkedin.com/in/your-username"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Linkedin size={16} />
               </a>
@@ -122,7 +126,7 @@ const Hero = ({ ySlow, yFast }) => {
               <a
                 aria-label="Email"
                 className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition transform hover:-translate-y-0.5 active:scale-95"
-                href="kalkiramsaravananoff@gmail.com"
+                href="mailto:kalkiramsaravananoff@gmail.com"
               >
                 <Mail size={16} />
               </a>
@@ -130,59 +134,77 @@ const Hero = ({ ySlow, yFast }) => {
           </div>
         </div>
 
-        {/* RIGHT: preview card with tilt + spotlight (no framer-motion) */}
-        <div
-          ref={cardRef}
-          onMouseMove={enableTilt ? handleMouseMove : undefined}
-          onMouseLeave={enableTilt ? resetTilt : undefined}
-          className="relative will-change-transform mx-auto md:mx-0 transition-transform duration-200"
-          style={{
-            transform: enableTilt ? `scale(1.02)` : undefined,
-          }}
-        >
-          <div className="w-[220px] sm:w-[280px] md:w-[340px] lg:w-[400px] aspect-[4/3] rounded-3xl bg-gradient-to-br from-white/10 to-white/5 p-0.5 ring-1 ring-white/10 shadow-[0_10px_40px_-10px_rgba(147,51,234,0.35)]">
-            <div
-              className="w-full h-full rounded-[1.2rem] overflow-hidden bg-black relative transition-transform duration-150 will-change-transform"
-              style={{
-                transform: enableTilt
-                  ? `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
-                  : undefined,
-              }}
-            >
-              {/* moving spotlight */}
-              {enableTilt && (
-                <div className="pointer-events-none absolute inset-0">
-                  <div
-                    className="absolute rounded-full opacity-20"
-                    style={{
-                      width: "14rem",
-                      height: "14rem",
-                      left: "50%",
-                      top: "50%",
-                      transform: `translate(calc(-50% + ${glowX}px), calc(-50% + ${glowY}px))`,
-                      background:
-                        "radial-gradient(closest-side, rgba(168,85,247,0.55), transparent 70%)",
-                    }}
-                  />
-                </div>
-              )}
-
-              {/* image */}
-              <img
-                alt="Showcase"
-                src={heroimg}
-                className="w-full h-full object-contain md:object-cover opacity-90"
-                loading="lazy"
-                decoding="async"
-                sizes="(min-width:1024px) 400px, (min-width:768px) 340px, (min-width:640px) 280px, 220px"
-              />
+        {/* RIGHT: preview (desktop keeps boxed tilt; mobile = plain image) */}
+        <div className="relative mx-auto md:mx-0">
+          {/* Mobile — plain image, no box */}
+          <div className="md:hidden text-center">
+            <img
+              alt="Showcase"
+              src={heroimg}
+              className="block w-[240px] sm:w-[280px] mx-auto object-contain"
+              loading="lazy"
+              decoding="async"
+              sizes="(min-width:640px) 280px, 240px"
+            />
+            <div className="mt-2">
+              <span className="inline-block bg-purple-600 text-white px-3 py-1 rounded-xl text-xs shadow">
+                Available for Dev roles
+              </span>
             </div>
           </div>
 
-          {/* floating badge */}
-          <div className="absolute -bottom-4 right-0 md:-right-4">
-            <div className="bg-purple-600 text-white px-3 py-2 rounded-2xl shadow-lg text-sm animate-bounce">
-              Available for Dev roles
+          {/* Desktop — original boxed card with tilt/spotlight (unchanged) */}
+          <div
+            ref={cardRef}
+            onMouseMove={enableTilt ? handleMouseMove : undefined}
+            onMouseLeave={enableTilt ? resetTilt : undefined}
+            className="hidden md:block relative will-change-transform transition-transform duration-200"
+            style={{ transform: enableTilt ? `scale(1.02)` : undefined }}
+          >
+            <div className="w-[220px] sm:w-[280px] md:w-[340px] lg:w-[400px] aspect-[4/3] rounded-3xl bg-gradient-to-br from-white/10 to-white/5 p-0.5 ring-1 ring-white/10 shadow-[0_10px_40px_-10px_rgba(147,51,234,0.35)]">
+              <div
+                className="w-full h-full rounded-[1.2rem] overflow-hidden bg-black relative transition-transform duration-150 will-change-transform"
+                style={{
+                  transform: enableTilt
+                    ? `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+                    : undefined,
+                }}
+              >
+                {/* moving spotlight */}
+                {enableTilt && (
+                  <div className="pointer-events-none absolute inset-0">
+                    <div
+                      className="absolute rounded-full opacity-20"
+                      style={{
+                        width: "14rem",
+                        height: "14rem",
+                        left: "50%",
+                        top: "50%",
+                        transform: `translate(calc(-50% + ${glowX}px), calc(-50% + ${glowY}px))`,
+                        background:
+                          "radial-gradient(closest-side, rgba(168,85,247,0.55), transparent 70%)",
+                      }}
+                    />
+                  </div>
+                )}
+
+                {/* image */}
+                <img
+                  alt="Showcase"
+                  src={heroimg}
+                  className="w-full h-full object-contain md:object-cover opacity-90"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width:1024px) 400px, (min-width:768px) 340px, (min-width:640px) 280px, 220px"
+                />
+              </div>
+            </div>
+
+            {/* floating badge (desktop only) */}
+            <div className="absolute -bottom-4 right-0 md:-right-4">
+              <div className="bg-purple-600 text-white px-3 py-2 rounded-2xl shadow-lg text-sm animate-bounce">
+                Available for Dev roles
+              </div>
             </div>
           </div>
         </div>

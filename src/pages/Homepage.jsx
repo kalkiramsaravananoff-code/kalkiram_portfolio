@@ -81,7 +81,7 @@ const Homepage = () => {
             <a className="text-gray-400 hover:text-white" href="#" aria-label="LinkedIn">
               LinkedIn
             </a>
-            <a className="text-gray-400 hover:text-white" href="kalkiramsaravananoff@gmail.com" aria-label="Email">
+            <a className="text-gray-400 hover:text-white" href="mailto:kalkiramsaravananoff@gmail.com" aria-label="Email">
               Email
             </a>
           </div>
