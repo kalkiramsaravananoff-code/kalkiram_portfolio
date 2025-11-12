@@ -1,6 +1,10 @@
 import React from "react";
 import { ArrowRight, Github } from "lucide-react";
 import { Reveal, RevealStagger } from "../components/scroll animation/Reveal";
+import kalki from "../assets/kalki.jpg"
+import logo from "../assets/logo.png"
+import yawaylogo from "../assets/yawaylogo.png"
+import velinfotechlogo from "../assets/velinfotechlogo.png"
 
 // ---------- Animated coding background (reusable, no framer-motion) ----------
 const CodingBackdrop = ({
@@ -91,20 +95,38 @@ const Tag = ({ children }) => (
   </span>
 );
 
-// --- Reusable compact project card (equal height, black box) ---
+// --- Reusable compact project card with hover animation ---
 const ProjectCard = ({ title, blurb, category, image, tags = [], href = "#" }) => (
   <a
     href={href}
-    className="group relative flex flex-col h-full rounded-xl overflow-hidden bg-black border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+    className="group relative flex flex-col h-full rounded-2xl overflow-hidden bg-black border border-white/10
+               focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black
+               transform transition-transform duration-300 ease-out
+               hover:-translate-y-1 hover:shadow-[0_16px_44px_-12px_rgba(139,92,246,0.35)]
+               active:-translate-y-1 active:shadow-[0_16px_44px_-12px_rgba(139,92,246,0.35)]
+               cursor-pointer select-none"
     aria-label={`${title} – ${category}`}
     rel="noopener noreferrer"
+    style={{ WebkitTapHighlightColor: "transparent" }}
   >
+    {/* soft gradient glow */}
+    <span
+      aria-hidden="true"
+      className="pointer-events-none absolute -inset-px rounded-2xl opacity-0
+                 transition duration-500 blur-md
+                 group-hover:opacity-100 group-active:opacity-100 group-focus-within:opacity-100"
+      style={{
+        background:
+          "radial-gradient(60% 50% at 50% 0%, rgba(168,85,247,0.25), rgba(59,130,246,0.20), transparent 70%)",
+      }}
+    />
+
     {/* media */}
     <div className="aspect-[16/10] overflow-hidden shrink-0">
       <img
         src={image}
         alt={`${title} preview`}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-active:scale-110 group-focus-within:scale-110"
         loading="lazy"
         decoding="async"
         sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
@@ -112,61 +134,67 @@ const ProjectCard = ({ title, blurb, category, image, tags = [], href = "#" }) =
     </div>
 
     {/* content */}
-    <div className="p-4 flex flex-col flex-1">
-      <div className="text-[10px] uppercase tracking-widest text-purple-400">
-        {category}
-      </div>
+    <div className="p-4 flex flex-col flex-1 relative">
+      <div className="text-[10px] uppercase tracking-widest text-purple-400">{category}</div>
       <h3 className="mt-1 text-lg md:text-xl font-bold">{title}</h3>
       <p className="text-gray-400 mt-1.5 text-sm">{blurb}</p>
 
-      {/* push tags to bottom for consistent heights */}
       <div className="mt-3 flex flex-wrap gap-1.5 mt-auto">
         {tags.map((t) => (
-          <Tag key={t}>{t}</Tag>
+          <span
+            key={t}
+            className="px-2 py-0.5 rounded-full bg-black border border-white/10 text-xs text-gray-200"
+          >
+            {t}
+          </span>
         ))}
       </div>
     </div>
 
-    {/* subtle ring + glow on hover */}
-    <span className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-white/10 group-hover:ring-white/20 transition" />
+    {/* shimmer sweep */}
     <span
       aria-hidden="true"
-      className="pointer-events-none absolute -inset-px rounded-[14px] opacity-0 group-hover:opacity-100 blur-xl transition"
+      className="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                 transition group-hover:opacity-100 group-active:opacity-100 group-focus-within:opacity-100"
       style={{
         background:
-          "radial-gradient(60% 50% at 50% 0%, rgba(168,85,247,0.22), rgba(59,130,246,0.18), transparent 70%)",
+          "linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.10) 50%, transparent 100%)",
+        backgroundSize: "200% 100%",
+        animation: "shine 1.6s linear infinite",
       }}
     />
   </a>
 );
 
+
 const MainSections = () => {
   const projects = [
-    {
-      title: "Campus Connect",
-      blurb: "A mini social portal for clubs & events with role-based dashboards.",
-      category: "Full Stack",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=900&fit=crop",
-      tags: ["React", "Express", "MongoDB", "JWT"],
-      href: "#",
-    },
-    {
-      title: "Expense Tracker",
-      blurb: "Personal finance web app with charts and CSV import/export.",
-      category: "Frontend",
-      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&h=900&fit=crop",
-      tags: ["React", "Chart.js", "LocalStorage"],
-      href: "#",
-    },
-    {
-      title: "AI Job Helper",
-      blurb: "Resume analyzer that maps JD keywords to resume gaps.",
-      category: "Tools",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=1200&h=900&fit=crop",
-      tags: ["Python", "Flask", "NLP"],
-      href: "#",
-    },
-  ];
+  {
+    title: "Yabookit",
+   blurb: "Movie ticket booking web app with showtimes, seat selection, and secure checkout.",
+    category: "Full Stack",
+    image:logo,
+    tags: ["React", "Express", "MongoDB", "JWT"],
+    href: "#", // TODO: replace with your live/demo or repo link
+  },
+ {
+  title: "YawayTech Website",
+  blurb: "Corporate site for Yaway Technologies showcasing services, projects, and contact—optimized for performance.",
+  category: "Frontend",
+  image: yawaylogo,
+  tags: ["React", "Vite", "TailwindCSS"],
+  href: "https://www.yawaytech.com",
+},
+{
+  title: "Vel Infotech Website",
+  blurb: "IT training institute site highlighting software courses, hands-on learning, and strong placement support.",
+  category: "Frontend",
+  image:velinfotechlogo,
+  tags: ["React", "Vite", "TailwindCSS"],
+  href: "https://www.vellinfotech.com",
+},
+];
+
 
   const skills = [
     "React", "JavaScript", "Node.js", "Express", "MongoDB",
@@ -203,7 +231,7 @@ const MainSections = () => {
 
           <Reveal className="text-center mt-8">
             <a
-              href="#"
+              href="https://github.com/kalkiramsaravananoff-code"
               className="text-sm md:text-base inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-semibold"
             >
               View more on GitHub <ArrowRight size={16} />
@@ -234,121 +262,180 @@ const MainSections = () => {
             ))}
           </RevealStagger>
 
-          <RevealStagger className="grid md:grid-cols-3 gap-3 mt-8">
-            {[
-              { title: "Clean, Accessible UI", desc: "Keyboard-friendly components, color contrast, and semantic HTML." },
-              { title: "API-first", desc: "RESTful patterns, error states, and loading skeletons." },
-              { title: "Deploy Ready", desc: "ENV configs, basic CI, and zero-downtime deploys." }
-            ].map((c) => (
-              <div key={c.title} className="rounded-xl border border-white/10 bg-black p-5">
-                <h4 className="font-semibold text-base md:text-lg">{c.title}</h4>
-                <p className="text-gray-400 mt-1 text-sm md:text-base">{c.desc}</p>
-              </div>
-            ))}
-          </RevealStagger>
+         <RevealStagger className="grid md:grid-cols-3 gap-3 mt-8">
+  {[
+    { title: "Frontend (1 yr)", desc: "React + Tailwind: responsive layouts, forms, modals, routing, basic accessibility." },
+    { title: "Backend (1 yr)", desc: "Node + Express + MongoDB: CRUD APIs, JWT auth, input validation, error handling." },
+    { title: "Delivery & Tools", desc: "Git & GitHub, Vite, ENV configs, simple CI, and deploys to Vercel/Netlify." }
+  ].map((c) => (
+    <div key={c.title} className="group relative">
+      {/* glow */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0
+                   transition duration-500 blur-md
+                   group-hover:opacity-100 group-active:opacity-100 group-focus-within:opacity-100"
+        style={{
+          background:
+            "radial-gradient(60% 50% at 50% 0%, rgba(168,85,247,0.25), rgba(59,130,246,0.2), transparent 70%)",
+        }}
+      />
+      <div
+        className="relative rounded-2xl border border-white/10 bg-black p-5
+                   transition-transform duration-300 ease-out
+                   hover:-translate-y-1 hover:shadow-[0_14px_40px_-10px_rgba(139,92,246,0.35)]
+                   active:-translate-y-1 active:shadow-[0_14px_40px_-10px_rgba(139,92,246,0.35)]
+                   focus-within:-translate-y-1 focus-within:shadow-[0_14px_40px_-10px_rgba(139,92,246,0.35)]
+                   ring-0 hover:ring-1 hover:ring-purple-500/40 active:ring-1 active:ring-purple-500/40"
+        style={{ WebkitTapHighlightColor: "transparent" }}
+      >
+        {/* shimmer */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                     transition group-hover:opacity-100 group-active:opacity-100 group-focus-within:opacity-100"
+          style={{
+            background:
+              "linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%)",
+            backgroundSize: "200% 100%",
+            animation: "shine 1.6s linear infinite",
+          }}
+        />
+        <h4 className="relative font-semibold text-base md:text-lg">{c.title}</h4>
+        <p className="relative text-gray-400 mt-1 text-sm md:text-base">{c.desc}</p>
+      </div>
+    </div>
+  ))}
+</RevealStagger>
+
+
+
         </div>
       </section>
 
       {/* ABOUT — animated bg (smaller image, no motion) */}
-      <section
-        id="about"
-        className="scroll-mt-24 md:scroll-mt-28 py-10 md:py-14 px-4 relative overflow-hidden bg-gray-900"
-      >
-        <CodingBackdrop glowPos="rb" glyphs />
-        <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-6 items-center">
-          <div className="order-2 md:order-1">
-            <SectionTitle pre="About" highlight="Me" post="" />
-            <p className="text-sm md:text-base text-gray-300 leading-relaxed">
-              I’m a self-driven fresher with a year of focused learning and real project work. I love turning ideas into delightful interfaces
-              and reliable web apps. I’m quick to learn, enjoy code reviews, and document what I build.
-            </p>
-            <ul className="mt-4 space-y-2 text-gray-300 text-sm md:text-base">
-              <li>• Strong with React, JavaScript, and modern CSS</li>
-              <li>• Comfortable with Node.js, Express, MongoDB</li>
-              <li>• UX thinking: wireframes → prototypes → polish</li>
-              <li>• Communicate clearly and iterate fast</li>
-            </ul>
-          </div>
+<section
+  id="about"
+  className="scroll-mt-24 md:scroll-mt-28 py-10 md:py-14 px-4 relative overflow-hidden bg-gray-900"
+>
+  <CodingBackdrop glowPos="rb" glyphs />
+  <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-6 items-center">
+    <div className="order-2 md:order-1">
+      <SectionTitle pre="About" highlight="Me" post="" />
+      <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+        I’m a junior full-stack developer with <strong>1 year</strong> of hands-on experience
+        building responsive React/Node apps. I focus on clean UI, accessible components, and
+        reliable APIs—shipping fast without skipping quality.
+      </p>
+      <ul className="mt-4 space-y-2 text-gray-300 text-sm md:text-base">
+        <li>• <strong>Frontend:</strong> React, Vite, Tailwind — reusable components, forms/validation, routing.</li>
+        <li>• <strong>Backend:</strong> Node.js, Express, MongoDB — REST APIs, JWT auth, error handling.</li>
+        <li>• <strong>Quality & DX:</strong> Git/GitHub, ESLint/Prettier, env configs, readable commits.</li>
+        <li>• <strong>Delivery:</strong> Deploys to Vercel/Netlify, simple CI, clear docs & handoff.</li>
+      </ul>
+    </div>
 
-          <div className="order-1 md:order-2">
-            <div className="w-full max-w-[220px] sm:max-w-[260px] md:max-w-[300px] mx-auto">
-              <div className="aspect-square rounded-2xl overflow-hidden border border-white/10">
-                <img
-                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=1000&h=1000&fit=crop"
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  sizes="(min-width:768px) 300px, (min-width:640px) 260px, 220px"
-                />
-              </div>
-            </div>
-          </div>
+  <div className="order-1 md:order-2">
+  <div className="group relative w-full max-w-[220px] sm:max-w-[260px] md:max-w-[300px] mx-auto">
+    {/* soft glow behind on hover/tap */}
+    <span
+      aria-hidden="true"
+      className="pointer-events-none absolute -inset-px rounded-2xl opacity-0
+                 transition duration-500 blur-md
+                 group-hover:opacity-100 group-active:opacity-100"
+      style={{
+        background:
+          "radial-gradient(60% 50% at 50% 0%, rgba(168,85,247,0.25), rgba(59,130,246,0.20), transparent 70%)",
+      }}
+    />
+
+    <div
+      className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 bg-black
+                 transform transition-all duration-300 ease-out
+                 group-hover:-translate-y-1 group-active:-translate-y-1
+                 group-hover:shadow-[0_16px_44px_-12px_rgba(139,92,246,0.35)]
+                 group-active:shadow-[0_16px_44px_-12px_rgba(139,92,246,0.35)]
+                 ring-0 group-hover:ring-1 group-active:ring-1 group-hover:ring-purple-500/40 group-active:ring-purple-500/40"
+      style={{ WebkitTapHighlightColor: "transparent" }}
+    >
+      {/* image zoom on hover/tap */}
+      <img
+        src={kalki}
+        alt="Profile"
+        className="w-full h-full object-cover transition-transform duration-500
+                   group-hover:scale-105 group-active:scale-105"
+        loading="lazy"
+        decoding="async"
+        sizes="(min-width:768px) 300px, (min-width:640px) 260px, 220px"
+      />
+
+      {/* subtle shimmer sweep */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                   transition group-hover:opacity-100 group-active:opacity-100"
+        style={{
+          background:
+            "linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%)",
+          backgroundSize: "200% 100%",
+          animation: "shine 1.6s linear infinite",
+        }}
+      />
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+     {/* CTA — replaces HIGHLIGHTS */}
+<section
+  id="banner" // keep the same id so existing nav links still work
+  className="scroll-mt-24 md:scroll-mt-28 py-10 md:py-14 px-5 relative"
+>
+  <div className="max-w-7xl mx-auto">
+    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-[#1a1026] via-[#1b1430] to-[#181224] p-5 sm:p-6 md:p-8 shadow-[0_10px_40px_-10px_rgba(139,92,246,0.35)]">
+      {/* soft ambient glows */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(80% 60% at 10% 10%, rgba(168,85,247,0.25), transparent 60%), radial-gradient(70% 60% at 90% 90%, rgba(99,102,241,0.22), transparent 60%)",
+        }}
+      />
+      {/* subtle top shine & inner ring */}
+      <div className="pointer-events-none absolute inset-0 rounded-[1.5rem] ring-1 ring-white/10" />
+      <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-white/5" />
+
+      {/* content */}
+      <div className="relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 justify-between">
+        <div className="max-w-3xl">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight">
+            Let’s build a fast, beautiful website.
+          </h3>
+          <p className="mt-2 text-sm sm:text-base text-gray-300">
+            Modern UI, strong SEO, and smooth interactions—tailored to your brand.
+          </p>
         </div>
-      </section>
 
-      {/* HIGHLIGHTS (replaces TIMELINE) — animated bg */}
-      <section
-        id="timeline"
-        className="scroll-mt-24 md:scroll-mt-28 py-10 md:py-14 px-5 relative overflow-hidden"
-      >
-        <CodingBackdrop glowPos="lb" glyphs />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <Reveal>
-            <SectionTitle
-              pre="Early Career"
-              highlight="Highlights"
-              post=""
-              subtitle="Education, certifications, and a few wins that show how I learn and build."
-            />
-          </Reveal>
-
-          <RevealStagger className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-            {/* Education */}
-            <div className="rounded-xl border border-white/10 bg-black p-5">
-              <div className="text-[11px] uppercase tracking-widest text-purple-400">Education</div>
-              <h3 className="mt-1 font-bold text-lg">B.Tech / B.E. (Computer Science)</h3>
-              <p className="text-gray-400 text-sm mt-1">Your College Name • 2020–2024</p>
-              <ul className="mt-3 space-y-1.5 text-gray-300 text-sm">
-                <li>• CGPA: 8.2 / 10</li>
-                <li>• Final-year project: Campus Connect</li>
-                <li>• Core CS: DS&A, OS, DBMS, Networks</li>
-              </ul>
-            </div>
-
-            {/* Certifications */}
-            <div className="rounded-xl border border-white/10 bg-black p-5">
-              <div className="text-[11px] uppercase tracking-widest text-purple-400">Certifications</div>
-              <h3 className="mt-1 font-bold text-lg">Industry-recognized</h3>
-              <div className="mt-3 flex flex-wrap gap-2">
-                <Tag>React Basics</Tag><Tag>Node.js</Tag><Tag>MongoDB</Tag>
-                <Tag>Git & GitHub</Tag><Tag>REST APIs</Tag>
-              </div>
-              <p className="text-gray-400 text-sm mt-3">Plus course tracks on JS, CSS-in-Depth, and API design.</p>
-            </div>
-
-            {/* Achievements */}
-            <div className="rounded-xl border border-white/10 bg-black p-5">
-              <div className="text-[11px] uppercase tracking-widest text-purple-400">Achievements</div>
-              <h3 className="mt-1 font-bold text-lg">Hackathons & Wins</h3>
-              <ul className="mt-3 space-y-1.5 text-gray-300 text-sm">
-                <li>• Top 10, College Hackathon — Campus Connect prototype</li>
-                <li>• Built AI Job Helper in 24 hrs (NLP keywords → resume gaps)</li>
-                <li>• 20+ issues fixed in personal/open-source projects</li>
-              </ul>
-            </div>
-          </RevealStagger>
-
-          <Reveal className="text-center mt-8">
-            <a
-              href="/resume.pdf"
-              className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 font-semibold text-sm inline-flex items-center gap-2"
-            >
-              Download Resume
-            </a>
-          </Reveal>
+        <div className="w-full md:w-auto">
+          <a
+            href="#contact" /* or mailto:hello@example.com */
+            className="inline-flex items-center justify-center gap-2 w-full md:w-auto px-5 py-2.5 rounded-full font-semibold text-white bg-violet-500 hover:bg-violet-400 transition-colors ring-1 ring-white/20 shadow-[0_8px_30px_rgba(139,92,246,0.35)] focus:outline-none focus:ring-2 focus:ring-violet-400/60"
+          >
+            Start a project
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" className="-mr-0.5">
+              <path d="M13.172 12 7.808 6.636l1.414-1.414L16 12l-6.778 6.778-1.414-1.414z"></path>
+            </svg>
+          </a>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* CONTACT — animated bg */}
       <section
@@ -368,8 +455,8 @@ const MainSections = () => {
               Start a Conversation <ArrowRight size={16} />
             </a>
             <a
-              href="#"
-              className="px-6 py-3 rounded-full border border-white/15 hover:bg-white/5 font-semibold text-sm inline-flex items-center gap-2"
+              href="https://github.com/kalkiramsaravananoff-code"
+              className="px-6 py-3 rounded-full border border-white hover:bg-gray-800/40 transition-colors font-semibold text-sm inline-flex items-center gap-2"
             >
               View GitHub <Github size={16} />
             </a>

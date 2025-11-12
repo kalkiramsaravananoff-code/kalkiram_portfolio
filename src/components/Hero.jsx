@@ -106,7 +106,7 @@ const Hero = ({ ySlow, yFast }) => {
               <a
                 aria-label="GitHub"
                 className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition transform hover:-translate-y-0.5 active:scale-95"
-                href="https://github.com/your-username"
+                href="https://github.com/kalkiramsaravananoff-code"
               >
                 <Github size={16} />
               </a>
@@ -122,7 +122,7 @@ const Hero = ({ ySlow, yFast }) => {
               <a
                 aria-label="Email"
                 className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition transform hover:-translate-y-0.5 active:scale-95"
-                href="mailto:hello@example.com"
+                href="kalkiramsaravananoff@gmail.com"
               >
                 <Mail size={16} />
               </a>

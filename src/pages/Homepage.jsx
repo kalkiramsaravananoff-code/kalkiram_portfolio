@@ -37,12 +37,14 @@ const Homepage = () => {
     return () => obs.disconnect();
   }, []);
 
+  
+
   const links = useMemo(
     () => [
       { id: "home", label: "Home" },
       { id: "work", label: "Projects" },
       { id: "about", label: "About" },
-      { id: "timeline", label: "Timeline" },
+      { id: "banner", label: "banner" },
       { id: "contact", label: "Contact" },
     ],
     []
@@ -53,11 +55,12 @@ const Homepage = () => {
     <div className="bg-black text-white min-h-screen">
       {/* NAV */}
       <Navbar
-        links={links}
-        active={active}
-        isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
-      />
+  links={links}
+  active={active}
+  setActive={setActive}
+  isMenuOpen={isMenuOpen}
+  setIsMenuOpen={setIsMenuOpen}
+/>;
 
       {/* HERO */}
       <Hero />
@@ -72,13 +75,13 @@ const Homepage = () => {
             © {new Date().getFullYear()} KALKIRAM SARAVANAN — Fresher Developer
           </p>
           <div className="flex items-center gap-6">
-            <a className="text-gray-400 hover:text-white" href="#" aria-label="GitHub">
+            <a className="text-gray-400 hover:text-white" href="https://github.com/kalkiramsaravananoff-code" aria-label="GitHub">
               GitHub
             </a>
             <a className="text-gray-400 hover:text-white" href="#" aria-label="LinkedIn">
               LinkedIn
             </a>
-            <a className="text-gray-400 hover:text-white" href="mailto:hello@example.com" aria-label="Email">
+            <a className="text-gray-400 hover:text-white" href="kalkiramsaravananoff@gmail.com" aria-label="Email">
               Email
             </a>
           </div>
