@@ -483,7 +483,7 @@ const MainSections = () => {
       <ContactModal
         open={contactOpen}
         onClose={() => setContactOpen(false)}
-        whatsappNumber="8760564164"            // ← your number (country code, no +)
+        whatsappNumber="918760564164"            // ← your number (country code, no +)
         defaultEmail="kalkiramsaravananoff@gmail.com"
       />
     </>
