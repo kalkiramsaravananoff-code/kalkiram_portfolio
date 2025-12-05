@@ -9,7 +9,7 @@ import React from "react";
 export default function ContactModal({
   open,
   onClose,
-  whatsappNumber = "919876543210", // ← change to your number (no +)
+  whatsappNumber = "8760564164", // ← change to your number (no +)
   defaultEmail = "kalkiramsaravananoff@gmail.com",
   subjectPrefix = "Portfolio Inquiry",
 }) {

@@ -81,7 +81,7 @@ const StickyHero = () => {
               transition={{ delay: 0.25 }}
               className="text-base md:text-lg text-gray-400 mt-4"
             >
-              Fresher developer with one year of hands-on projects, strong
+              Software developer with one year of hands-on projects, strong
               fundamentals, and a passion for crisp UI and smooth UX.
             </motion.p>
 
@@ -106,7 +106,16 @@ const StickyHero = () => {
               </a>
               <div className="flex items-center gap-2.5 ml-1">
                 <a aria-label="GitHub" className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition" href="#"><Github size={16} /></a>
-                <a aria-label="LinkedIn" className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition" href="#"><Linkedin size={16} /></a>
+                <a
+                  aria-label="LinkedIn"
+                  className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition"
+                  href="https://www.linkedin.com/in/kalkiram-saravanan-814239393"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Linkedin size={16} />
+                </a>
+
                 <a aria-label="Email" className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition" href="mailto:hello@example.com"><Mail size={16} /></a>
               </div>
             </motion.div>

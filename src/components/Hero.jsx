@@ -171,7 +171,7 @@ const Hero = ({ ySlow, yFast }) => {
           </h1>
 
           <p className="text-base md:text-lg text-gray-400 mt-4">
-            Fresher developer with one year of hands-on projects, strong
+            Software developer with one year of hands-on projects, strong
             fundamentals, and a passion for crisp UI and smooth UX.
           </p>
 
@@ -206,8 +206,8 @@ const Hero = ({ ySlow, yFast }) => {
 
               <a
                 aria-label="LinkedIn"
-                className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition transform hover:-translate-y-0.5 active:scale-95"
-                href="https://www.linkedin.com/in/your-username"
+                className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-white/30 transition-transform hover:-translate-y-0.5 active:scale-95"
+                href="https://www.linkedin.com/in/kalkiram-saravanan-814239393"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -305,7 +305,7 @@ const Hero = ({ ySlow, yFast }) => {
               </div>
               <div>
                 <p className="text-[10px] text-gray-400">Projects</p>
-                <p className="font-semibold text-white">10+ web apps</p>
+                <p className="font-semibold text-white">3+ projects</p>
               </div>
               <div>
                 <p className="text-[10px] text-gray-400">Focus</p>
@@ -321,7 +321,7 @@ const Hero = ({ ySlow, yFast }) => {
 
             {/* bottom row */}
             <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <span className="inline-flex items-center justify-center rounded-full bg-purple-600/90 px-4 py-[6px] text-[11px] font-medium text-white shadow leading-none">
+              <span className="inline-flex items-center justify-center rounded-full bg-purple-600/90 px-4 py-[10px] text-[11px] font-medium text-white shadow leading-none">
                 Available for Dev roles
               </span>
               <span className="text-[11px] text-gray-400">

@@ -80,7 +80,7 @@ const Navbar = ({ links, active, setActive, isMenuOpen, setIsMenuOpen }) => {
           onClick={(e) => handleNavClick(e, "home")}
           className="font-extrabold text-xl tracking-tight"
         >
-          <span>Port</span><span className="text-purple-500">folio</span>
+          <span>Kalkiram</span><span className="text-purple-500"> Saravanan</span>
         </a>
 
         {/* Desktop nav */}

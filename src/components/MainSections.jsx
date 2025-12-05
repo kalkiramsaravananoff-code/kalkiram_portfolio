@@ -551,12 +551,13 @@ const MainSections = () => {
               Prefer LinkedIn?{" "}
               <a
                 className="text-purple-400 hover:text-purple-300 underline underline-offset-4"
-                href="https://www.linkedin.com/in/your-username"
+                href="https://www.linkedin.com/in/kalkiram-saravanan-814239393"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Let’s connect
               </a>
+
               .
             </p>
           </Reveal>

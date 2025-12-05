@@ -72,13 +72,13 @@ const Homepage = () => {
       <footer className="py-10 px-6 border-t border-white/10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} KALKIRAM SARAVANAN — Fresher Developer
+            © {new Date().getFullYear()} KALKIRAM SARAVANAN — Software Developer
           </p>
           <div className="flex items-center gap-6">
             <a className="text-gray-400 hover:text-white" href="https://github.com/kalkiramsaravananoff-code" aria-label="GitHub">
               GitHub
             </a>
-            <a className="text-gray-400 hover:text-white" href="#" aria-label="LinkedIn">
+            <a className="text-gray-400 hover:text-white" href="https://www.linkedin.com/in/kalkiram-saravanan-814239393"  aria-label="LinkedIn">
               LinkedIn
             </a>
             <a className="text-gray-400 hover:text-white" href="mailto:kalkiramsaravananoff@gmail.com" aria-label="Email">
